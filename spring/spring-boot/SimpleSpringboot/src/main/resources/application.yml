@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: SimpleSpringBoot
+server:
+  port: 8088
+management:
+  security:
+    enabled: false
+logging:
+  level:
+    com.tkd.springboot.SimpleSpringboot: debug
