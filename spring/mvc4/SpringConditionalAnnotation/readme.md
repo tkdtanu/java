@@ -30,3 +30,21 @@ ConditionalOnExpression.class
 
 There are many other annotations also.
 
+Typically all Auto Configuration classes look at other classes available in the classpath. If specific classes are available in the classpath, then configuration for that functionality is enabled through auto configuration. Annotations like @ConditionalOnClass, @ConditionalOnMissingBean help in providing these features!
+<br>
+<br>
+@ConditionalOnClass({ DataSource.class, EmbeddedDatabaseType.class }) : This configuration is enabled only when these classes are available in the classpath.
+
+<br>
+<br>
+@ConditionalOnMissingBean : This bean is configured only if there is no other bean configured with the same name
+<br>
+
+You can turn debug logging by adding a simple property value to application.properties.
+<br>
+logging.level.org.springframework: DEBUG
+<br>
+When you restart the application, you would see an auto configuration report printed in the log.
+<br>
+<br>
+All auto configuration logic is implemented in spring-boot-autoconfigure.jar. All auto configuration logic for mvc, data, jms and other frameworks is present in a single jar.
