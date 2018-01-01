@@ -1,12 +1,23 @@
 package com.tkd.springmvc;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@SpringBootApplication
+import com.tkd.springmvc.service.EmailService;
+
+/**
+ * @author tarun.das
+ *
+ */
 public class SpringConditionalAnnotationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringConditionalAnnotationApplication.class, args);
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.tkd.springmvc");
+		EmailService emailSerivice = context.getBean("emailService", EmailService.class);
+		if(emailSerivice != null) {
+			System.out.println("********************************************");
+			System.out.println("Server Name:" +emailSerivice.serverName());
+			System.out.println("********************************************");
+		}
+		context.close();
 	}
 }
