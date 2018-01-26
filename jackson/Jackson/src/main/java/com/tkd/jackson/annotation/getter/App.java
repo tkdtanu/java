@@ -1,4 +1,4 @@
-package com.tkd.jackson.annotation;
+package com.tkd.jackson.annotation.getter;
 
 /**
  * Hello world!

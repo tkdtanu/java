@@ -1,4 +1,4 @@
-package com.tkd.jackson.annotation;
+package com.tkd.jackson.annotation.getter;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

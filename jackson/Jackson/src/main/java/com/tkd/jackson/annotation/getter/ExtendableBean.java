@@ -1,4 +1,4 @@
-package com.tkd.jackson.annotation;
+package com.tkd.jackson.annotation.getter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +22,4 @@ public class ExtendableBean {
 		properties.put(key, value);
 	}
 	
-	
-
 }

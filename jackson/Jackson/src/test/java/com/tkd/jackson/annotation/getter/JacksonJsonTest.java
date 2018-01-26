@@ -1,17 +1,27 @@
-package com.tkd.jackson.annotation;
+package com.tkd.jackson.annotation.getter;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.InjectableValues;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.tkd.jackson.annotation.ExtendableBean;
-import com.tkd.jackson.annotation.MyBean;
-import com.tkd.jackson.annotation.RawBean;
-import com.tkd.jackson.annotation.TypeEnumWithValue;
+import com.tkd.jackson.annotation.getter.Event;
+import com.tkd.jackson.annotation.getter.ExtendableBean;
+import com.tkd.jackson.annotation.getter.MyBean;
+import com.tkd.jackson.annotation.getter.RawBean;
+import com.tkd.jackson.annotation.getter.TypeEnumWithValue;
+import com.tkd.jackson.annotation.getter.UserWithRoot;
+import com.tkd.jackson.annotation.setter.BeanWithCreater;
+import com.tkd.jackson.annotation.setter.BeanWithInject;
 
 import org.junit.matchers.JUnitMatchers;
 
@@ -72,17 +82,33 @@ public class JacksonJsonTest {
 
 		assertThat(enumAsString, is("\"Type A\""));
 	}
-	
+
 	@Test
 	public void whenSerializingUsingJsonRootName_thenCorrect() throws JsonProcessingException {
 		UserWithRoot user = new UserWithRoot(1, "Tarun");
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
 		String result = mapper.writeValueAsString(user);
-		
+
 		System.out.println(result);
 
 		assertThat(result, JUnitMatchers.containsString("user"));
 		assertThat(result, JUnitMatchers.containsString("Tarun"));
+	}
+
+	@Test
+	public void whenSerializingUsingJsonSerialize_thenCorrect() throws JsonProcessingException, ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+		String toParse = "20-12-2014 02:30:00";
+
+		Date date = formatter.parse(toParse);
+
+		Event event = new Event("party", date);
+
+		String result = new ObjectMapper().writeValueAsString(event);
+
+		System.out.println(result);
+
+		assertThat(result, JUnitMatchers.containsString(toParse));
 	}
 }
