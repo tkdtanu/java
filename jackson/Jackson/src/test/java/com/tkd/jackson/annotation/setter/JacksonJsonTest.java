@@ -41,4 +41,15 @@ public class JacksonJsonTest {
 		assertEquals("My bean", bean.name);
 		assertEquals("val2", bean.getProperties().get("attr2"));
 	}
+	
+	@Test
+	public void whenDeSerializingUsingJsonSetter_thenCorrect() throws IOException{
+
+		String json
+	      = "{\"id\":1,\"name\":\"My bean\"}";
+		
+		MyBean bean = new ObjectMapper().readerFor(MyBean.class).readValue(json);
+
+		assertEquals("My bean", bean.getTheName());
+	}
 }
