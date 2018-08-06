@@ -1,0 +1,11 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+    static-path-pattern: /resources/**
+  application:
+    name: SpringBasicAuthentication
+server:
+  port: 8686
+ 

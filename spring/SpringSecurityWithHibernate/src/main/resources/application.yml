@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: SpringSecurityWithHibernate
+  datasource:
+    url: jdbc:mysql://localhost:3306/local
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: MYSQL
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+server:
+  port: 8686
+logging:
+  level:
+    root: WARN
+    com.tkd.spring.security: DEBUG
+    org.springframework.web: info
+    org.springframework.security: info
+    
